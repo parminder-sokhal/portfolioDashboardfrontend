@@ -99,7 +99,7 @@ export default function Home() {
       {/* Portfolio Table */}
       <div className="overflow-x-auto border rounded">
         <table className="w-full text-sm">
-          <thead className="sticky top-0 bg-white">
+          <thead className="sticky top-0">
             <tr>
               <th className="p-3 text-left">Stock</th>
               <th className="p-3 text-right">Buy Price</th>
