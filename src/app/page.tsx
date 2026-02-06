@@ -7,25 +7,25 @@ import { PortfolioResponse } from "@/src/types/portfolio";
 export default function Home() {
   const [data, setData] = useState<PortfolioResponse | null>(null);
   const [loading, setLoading] = useState(true);
-  const [loadingMessage, setLoadingMessage] = useState(
-    "Waking up server… please wait ⏳"
-  );
+
+
+
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   const loadData = async () => {
     try {
-      setLoading(true);
-      setLoadingMessage("Connecting to backend server…");
+
+
 
       const res = await fetchPortfolio();
 
-      setLoadingMessage("Reading Excel file & parsing portfolio data…");
+
 
       setData(res);
       setLastUpdated(new Date(res.lastUpdated));
     } catch (err) {
       console.error(err);
-      setLoadingMessage("Something went wrong while loading data ❌");
+
     } finally {
       setLoading(false);
     }
@@ -38,19 +38,20 @@ export default function Home() {
   }, []);
 
   if (loading) {
-    return (
-      <div className="p-6 max-w-xl mx-auto text-center">
-        <h2 className="text-lg font-semibold mb-2">
-          Portfolio is getting ready 📊
-        </h2>
-        <p className="text-sm text-gray-600 mb-4">{loadingMessage}</p>
-
-        <div className="text-xs text-gray-400">
-          Render free server may take ~30 seconds to wake up
-        </div>
-      </div>
-    );
-  }
+  return (
+    <div className="p-6 max-w-xl mx-auto text-center">
+      <h2 className="text-lg font-semibold mb-2">
+        Portfolio is getting ready 📊
+      </h2>
+      <p className="text-sm text-gray-600">
+        Connecting to backend server…
+      </p>
+      <p className="text-xs text-gray-400 mt-2">
+        Render free server may take ~30 seconds to wake up
+      </p>
+    </div>
+  );
+}
 
   return (
     <div className="p-6 max-w-7xl mx-auto">
@@ -99,7 +100,7 @@ export default function Home() {
       {/* Portfolio Table */}
       <div className="overflow-x-auto border rounded">
         <table className="w-full text-sm">
-          <thead className="sticky top-0">
+          <thead className=" sticky top-0">
             <tr>
               <th className="p-3 text-left">Stock</th>
               <th className="p-3 text-right">Buy Price</th>
